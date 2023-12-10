@@ -1,9 +1,9 @@
-defmodule Dictionary.MixProject do
+defmodule Hangman.MixProject do
   use Mix.Project
 
   def project do
     [
-      app: :dictionary,
+      app: :hangman,
       version: "0.1.0",
       elixir: "~> 1.15",
       start_permanent: Mix.env() == :prod,
@@ -20,6 +20,9 @@ defmodule Dictionary.MixProject do
 
   # Run "mix help deps" to learn about dependencies.
   defp deps do
-    []
+    [
+      {:dialyxir, "~> 1.4", only: [:dev, :test], runtime: false},
+      {:dictionary, path: "../dictionary"}
+    ]
   end
 end
