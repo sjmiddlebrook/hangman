@@ -88,6 +88,19 @@ defmodule ImplGameTest do
     assert game.game_state == :lost
   end
 
+  test "letters are revealed after loss" do
+    game = Game.new_game("golf")
+    {game, _tally} = Game.make_move(game, "a")
+    {game, _tally} = Game.make_move(game, "b")
+    {game, _tally} = Game.make_move(game, "c")
+    {game, _tally} = Game.make_move(game, "d")
+    {game, _tally} = Game.make_move(game, "e")
+    {game, _tally} = Game.make_move(game, "h")
+    assert game.game_state != :lost
+    {game, _tally} = Game.make_move(game, "r")
+    assert game.letters == ["g", "o", "l", "f"]
+  end
+
   test "can handle a sequence of moves" do
     # hello
     [

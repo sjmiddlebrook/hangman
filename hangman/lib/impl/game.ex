@@ -77,6 +77,10 @@ defmodule Impl.Game do
 
   ##########################################################
 
+  defp reveal_guessed_letters(game = %{game_state: :lost}) do
+    game.letters
+  end
+
   defp reveal_guessed_letters(game) do
     Enum.map(game.letters, &maybe_reveal_letter(&1, MapSet.member?(game.used, &1)))
   end
@@ -93,7 +97,7 @@ defmodule Impl.Game do
     {game, tally(game)}
   end
 
-  defp tally(game) do
+  def tally(game) do
     %{
       turns_left: game.turns_left,
       game_state: game.game_state,
