@@ -17,7 +17,9 @@ defmodule Impl.Game do
   ### New Game ###
   @spec new_game() :: t
   def new_game do
-    new_game(Dictionary.random_word())
+    Dictionary.start()
+    |> Dictionary.random_word()
+    |> new_game()
   end
 
   @spec new_game(String.t()) :: t
